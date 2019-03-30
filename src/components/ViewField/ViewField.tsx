@@ -1,8 +1,6 @@
 import React, { ReactNode } from 'react';
 
-import LabelElement from '../Label';
-
-import { ViewFieldWrapper, ViewFieldDivider, ViewFieldValue, ViewFieldElement } from './style';
+import { ViewFieldWrapper, ViewFieldDivider, ViewFieldValue, ViewFieldElement, ViewLabelElement } from './style';
 
 export interface ViewFieldProps {
     labelText: ReactNode;
@@ -14,7 +12,7 @@ export const ViewField = ({labelText, valueText, ...other}: ViewFieldProps) => {
     return (
         <ViewFieldWrapper>
             <ViewFieldElement {...other}>
-                <LabelElement>{finalLabelText}</LabelElement>
+                <ViewLabelElement>{finalLabelText}</ViewLabelElement>
                 <ViewFieldValue>{valueText}</ViewFieldValue>
             </ViewFieldElement>
             <ViewFieldDivider />

@@ -1,4 +1,5 @@
 import styled from '../../styled-components';
+import Divider from '../Divider';
 
 export const ContactListElement = styled.div`
     background-color: ${props => props.theme.palette.secondaryBackgroundColor};
@@ -7,4 +8,8 @@ export const ContactListElement = styled.div`
     max-width: 20vw;
     width: 100%;
     height: 100vh;
+`;
+
+export const ContactListDivider = styled(Divider)`
+    margin-left: ${props => props.theme.indents.medium}
 `;

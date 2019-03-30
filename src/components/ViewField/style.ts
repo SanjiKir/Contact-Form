@@ -1,6 +1,7 @@
 import styled from '../../styled-components';
- import ListDivider from '../ListDivider';
+ import Divider from '../Divider';
 import { getBodyTypography } from '../../theme/helpers';
+import LabelElement from '../Label';
 
 export const ViewFieldWrapper = styled.div`
     display: flex;
@@ -11,10 +12,11 @@ export const ViewFieldWrapper = styled.div`
 `;
 
 export const ViewFieldElement = styled.div`
+    display: flex;
     padding: 0 ${props => props.theme.indents.large};
 `;
 
-export const ViewFieldDivider = styled(ListDivider)`
+export const ViewFieldDivider = styled(Divider)`
     border-width: 1px;
     margin-top: ${props => props.theme.indents.small};
 
@@ -23,4 +25,9 @@ export const ViewFieldDivider = styled(ListDivider)`
 export const ViewFieldValue = styled.span`
     ${getBodyTypography}
     margin-left: 1rem;
+`;
+
+export const ViewLabelElement = styled(LabelElement)`
+    direction: rtl;
+    min-width: 6rem;
 `;
