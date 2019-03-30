@@ -2,6 +2,9 @@ export interface Typography {
     fontFamily: string;
     input: InputTypography;
     listItem: TypogarphyVariant;
+    body: TypogarphyVariant;
+    heading: TypogarphyVariant;
+    button: TypogarphyVariant;
 }
 
 export interface InputTypography {
@@ -18,6 +21,10 @@ export interface TypogarphyVariant {
 
 export const typography: Typography = {
     fontFamily: 'Roboto',
+    heading: {
+        fontSize: '3rem',
+        fontWeight: 500,
+    },
     input: {
         large: {
             fontSize: '1.8rem',
@@ -32,12 +39,20 @@ export const typography: Typography = {
             fontWeight: 500,
         },
         label: {
-            fontSize: '1rem',
+            fontSize: '1.5rem',
             fontWeight: 400,
         },
     },
     listItem: {
-        fontSize: '1rem',
+        fontSize: '1.3rem',
+        fontWeight: 500,
+    },
+    button: {
+        fontSize: '1.5rem',
+        fontWeight: 400,
+    },
+    body: {
+        fontSize: '1.5rem',
         fontWeight: 400,
     },
 };

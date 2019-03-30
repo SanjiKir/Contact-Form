@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { TextAreaField, InputField } from './components';
+import { ContactList, InfoScreen } from './components';
 import { ThemeProvider } from './styled-components';
 import { theme } from './theme';
 import GlobalStyle from './styled-components/GlobalStyle';
@@ -10,9 +10,11 @@ class App extends Component {
     return (
       <ThemeProvider theme={theme}>
       <>
-          <GlobalStyle />
-          <InputField label="zhopa" />
-          <TextAreaField />
+        <GlobalStyle />
+        <div style={{display: 'flex'}}>
+          <ContactList />
+          <InfoScreen />
+        </div>
       </>
       </ThemeProvider>
     );

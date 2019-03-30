@@ -1,22 +1,22 @@
-import React, { useState, useCallback, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 
-import { FieldElement, LabelElement, FieldWrapper, FieldElementProps } from './style';
+import { useFocusHook } from '../hooks';
+import LabelElement from '../Label';
+
+import { FieldElement, FieldWrapper, FieldElementProps } from './style';
 
 export type FieldProps<T> = {
     label?: ReactNode;
 } & FieldElementProps & T;
 
 export const Field = <T extends any>(Component: React.ComponentType<T>) => ({ error, label, large, ...other }: FieldProps<T>) => {
-    const [focused, setFocused] = useState(false);
-    
+    const {focused, handleFocus } = useFocusHook();
     const fieldProps = {
         error,
         focused,
     };
 
-    const handleFocus = useCallback(() => setFocused(f => !f), []);
-
-    const labelElement = label && <LabelElement>label</LabelElement>;
+    const labelElement = label && <LabelElement large={large}>label</LabelElement>;
 
     return (
         <FieldWrapper large={large}>
