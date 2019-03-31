@@ -19,4 +19,6 @@ export const ActionElementsContainer = styled.div`
     width: 100%; 
     justify-content: space-between;
     margin-bottom: 2rem;
+
+    align-self: flex-end;
 `;

@@ -1,1 +1,1 @@
-export { default } from './SelectableList';
+export { default as SelectableList } from './SelectableList';

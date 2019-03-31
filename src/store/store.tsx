@@ -1,8 +1,10 @@
 import React, { useReducer, createContext, ReactNode, Reducer, useContext, Dispatch } from 'react';
 
+import { IContactList, initialContactList, IContact } from './initialContactList';
+
 export interface IState {
-    contactList: any;
-    activeContact: any;
+    contactList: IContactList;
+    activeContact: IContact | null;
     editMode: boolean;
 }
 
@@ -12,9 +14,7 @@ export interface Action {
 }
 
 const initialState = {
-    contactList: {
-
-    },
+    contactList: initialContactList,
     activeContact: null,
     editMode: false,
 };

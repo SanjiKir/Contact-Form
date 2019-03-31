@@ -1,10 +1,8 @@
 import React from 'react';
 
-import SelectableList from '../SelectableList';
-import { ListItem } from '../ListItem';
-import ListHeader from '../ListHeader/ListHeader';
+import { SelectableList } from '../SelectableList';
 
-import { ContactListElement, ContactListDivider } from './style';
+import { ContactListElement } from './style';
 
 export const ContactList = (props: any) => {
 

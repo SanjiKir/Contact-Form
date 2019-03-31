@@ -1,6 +1,7 @@
 import React, { useState, useCallback, ReactChild } from 'react';
 
 import { SelectableListElement } from './style';
+import { toFlatChildren } from '../../utils';
 
 export interface SelectableListProps {
     children: ReactChild[];
@@ -23,7 +24,8 @@ const useListItemClick = () => {
 export const SelectableList = ({ children, ...other }: SelectableListProps) => {
     const { selected, handleSelected } = useListItemClick();
 
-    const items = React.Children.map(children, (child, index) => {
+    const flatChildren = toFlatChildren(children);
+    const items = React.Children.map(flatChildren, (child, index) => {
         if (typeof child ==='string' || typeof child === 'number') {
             return child;
         }

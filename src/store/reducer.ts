@@ -6,7 +6,7 @@ export const reducer = (state: IState, action: Action) => {
       case CONTACT_CHOSEN:
         return {
           ...state,
-          activeContact: action.payload,
+          activeContact: state.contactList[action.payload],
         };
         
       default:
