@@ -18,6 +18,22 @@ export interface IContactList {
 const initialContactArray = [
     {
         id: uuid(),
+        name: 'Mary',
+        lastName: 'Kate',
+        phone: '411-123-7513',
+        email: 'mary.kate@gmail.com',
+        address: 'Rusveltska 123/25 Prague 10100 Czech Republic',
+    },
+    {
+        id: uuid(),
+        name: 'Mac',
+        lastName: 'Barter',
+        phone: '777-123-412',
+        email: 'mary.barter@gmail.com',
+        address: 'Pushina str. 25 Russia Moscow',
+    },
+    {
+        id: uuid(),
         name: 'Adam',
         lastName: 'Acer',
         phone: '399-692-7753',
@@ -34,21 +50,6 @@ const initialContactArray = [
         address: '11 Bayland str Florida FL 55012 United States',
         note: 'Note',
     },
-    {
-        id: uuid(),
-        name: 'Mary',
-        lastName: 'Kate',
-        phone: '411-123-7513',
-        email: 'mary.kate@gmail.com',
-        address: 'Rusveltska 123/25 Prague 10100 Czech Republic',
-    },
-    {
-        id: uuid(),
-        name: 'Mac',
-        lastName: 'Barter',
-        phone: '777-123-412',
-        email: 'mary.barter@gmail.com',
-        address: 'Pushina str. 25 Russia Moscow',
-    },
+
 ];
 export const initialContactList: IContactList = indexBy(prop('id'), initialContactArray);
