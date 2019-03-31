@@ -4,7 +4,7 @@ import { ThemeProvider } from './styled-components';
 import { theme } from './theme';
 import GlobalStyle from './styled-components/GlobalStyle';
 import { StateProvider } from './store/store';
-import { reducer } from './store/reducer';
+import { reducer } from './store';
 import ContactListContainer from './containers/ContactListContainer/ContactListContainer';
 import { MainScreenContainer } from './containers';
 

@@ -16,7 +16,7 @@ export interface InputProps {
     type?: string;
 }
 
-export const Input = ({ value, placeholder, children, onChange, ...other}: InputProps) => {
+export const Input = ({ value, placeholder, onChange, ...other}: InputProps) => {
     const { handleChange } = useChangeEventHook<HTMLInputElement>(onChange);
 
     const inputProps = { ...other, value, onChange: handleChange };
@@ -25,7 +25,6 @@ export const Input = ({ value, placeholder, children, onChange, ...other}: Input
             <InputContainer>
                 <ValueContainer>
                     <NativeInput {...inputProps} />
-                    {children}
                 </ValueContainer>
             </InputContainer>
         );

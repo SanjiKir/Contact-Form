@@ -1,16 +1,11 @@
 import React, { useCallback, useMemo } from 'react';
-import { head, toPairs, apply, omit, map, compose, sortBy, prop } from 'ramda';
+import { head, compose, sortBy, prop } from 'ramda';
 
-import { useStateValue, CONTACT_CHOSEN, IContact } from '../../store';
+import { useStateValue, IContact } from '../../store';
 import { ContactList, ListItem, ContactListDivider, ListHeader } from '../../components';
-
-const toIndividualKeys = compose<any, any[], ReadonlyArray<any>>(
-    map(apply(omit)),
-    toPairs
-);
+import { toArrayWithoutKeys } from '../../utils';
 
 let prevHeader: string | null = null;
-
 export const ContactListContainer = (props: any) => {
     const { state: { contactList }, dispatch } = useStateValue();
 
@@ -35,11 +30,12 @@ export const ContactListContainer = (props: any) => {
             );
         }),
         (contactListArray: ReadonlyArray<IContact>) => sortBy(prop('lastName'))(contactListArray),
-        toIndividualKeys
+        toArrayWithoutKeys
     ), [contactList]);
 
     const handleContactClick = useCallback((contactId: string) => () => {
-        dispatch({type: CONTACT_CHOSEN, payload: contactId});
+        dispatch({type: 'CONTACT_CHOSEN', payload: contactId});
+        dispatch({ type: 'TOGGLE_MODE', payload: false });
     }, []);
 
     return (

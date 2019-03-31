@@ -27,11 +27,11 @@ export const typography: Typography = {
     },
     input: {
         large: {
-            fontSize: '1.8rem',
+            fontSize: '3rem',
             fontWeight: 500,
         },
         normal: {
-            fontSize: '1rem',
+            fontSize: '1.5rem',
             fontWeight: 400,
         },
         placeholder: {

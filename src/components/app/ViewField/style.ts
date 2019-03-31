@@ -15,12 +15,6 @@ export const ViewFieldElement = styled.div`
     padding: 0 ${props => props.theme.indents.large};
 `;
 
-export const ViewFieldDivider = styled(Divider)`
-    border-width: 1px;
-    margin-top: ${props => props.theme.indents.small};
-
-`;
-
 export const ViewFieldValue = styled.span`
     ${getBodyTypography}
     margin-left: 1rem;

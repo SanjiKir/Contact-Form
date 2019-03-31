@@ -1,4 +1,5 @@
 import styled from '../../../styled-components';
+import { getInputNormalTypography } from '../../../theme/helpers';
 
 export const TextAreaContainer = styled.div`
     display: flex;
@@ -6,10 +7,11 @@ export const TextAreaContainer = styled.div`
 `;
 
 export const NativeTextArea = styled.textarea`
+    ${getInputNormalTypography}
     background: transparent;
     border: 0;
     outline: none;
-    padding: 0;
+    padding: 0 0.2rem;
     resize: none;
     width: 100%;
 `;

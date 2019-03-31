@@ -1,22 +1,12 @@
 import React, { useReducer, createContext, ReactNode, Reducer, useContext, Dispatch } from 'react';
 
-import { IContactList, initialContactList, IContact } from './initialContactList';
-
-export interface IState {
-    contactList: IContactList;
-    activeContact: IContact | null;
-    editMode: boolean;
-}
-
-export interface Action {
-    type: 'CONTACT_CHOSEN';
-    payload: any;
-}
+import { initialContactList } from './initialContactList';
+import { Action, IState } from './reducers';
 
 const initialState = {
     contactList: initialContactList,
     activeContact: null,
-    editMode: false,
+    editMode: true,
 };
 
 export type IStateContext = [IState, Dispatch<Action>];
@@ -28,7 +18,7 @@ export interface StateProviderProps {
     children: ReactNode;
 }
 
-export const StateProvider = <A extends any>({ reducer, children }: StateProviderProps) => (
+export const StateProvider = ({ reducer, children }: StateProviderProps) => (
     <StateContext.Provider value={useReducer(reducer, initialState)}>
         {children}
     </StateContext.Provider>

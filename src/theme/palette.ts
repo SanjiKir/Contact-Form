@@ -23,7 +23,7 @@ export const palette: Palette = {
     activeColor: '#0264E1',
     hoverColor: 'blue',
     backgroundColor: white,
-    borderColor: 'gray',
+    borderColor: '#C4C4C4',
     secondaryBackgroundColor: '#E1E2E4',
     errorColor: 'red',
 };
