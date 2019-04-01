@@ -34,7 +34,7 @@ export const ContactListContainer = (props: any) => {
     ), [contactList]);
 
     const handleContactClick = useCallback((contactId: string) => () => {
-        dispatch({type: 'CONTACT_CHOSEN', payload: contactId});
+        dispatch({type: 'CONTACT_CHOSEN', payload: contactList[contactId]});
         dispatch({ type: 'TOGGLE_MODE', payload: false });
     }, []);
 

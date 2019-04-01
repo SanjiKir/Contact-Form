@@ -11,16 +11,18 @@ import { ContactDescriptionContainer, ActionElementsContainer } from './style';
 export interface InfoScreenProps {
     activeContact: IContact | null;
 }
-
+let prevState: any;
 export const InfoScreen = ({ activeContact, ...other }: InfoScreenProps) => {
-    const { state: { editMode }, dispatch } = useStateValue();
+    const { state, dispatch } = useStateValue();
+    console.log(prevState === state);
+    prevState = state;
     
     const toggleAppMode = useCallback(() => {
         dispatch({ type: 'TOGGLE_MODE', payload: true });
     }, []);
 
     return (<>
-                {activeContact && !editMode && (
+                {activeContact && !state.editMode && (
                     <>
                     <MainContactInfo>{`${activeContact.name} ${activeContact.lastName}`}</MainContactInfo>
                     <ContactDescriptionContainer>
@@ -31,7 +33,7 @@ export const InfoScreen = ({ activeContact, ...other }: InfoScreenProps) => {
                     </ContactDescriptionContainer>
                     </>
                 )}
-                {editMode && <ContactForm /> }
+                {state.editMode && <ContactForm /> }
                 <ActionElementsContainer>
                     <Button onClick={toggleAppMode} small={true}>+</Button>
                 {activeContact && (

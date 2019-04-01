@@ -7,29 +7,45 @@ export interface IState {
 }
 
 export type Action =
-    | { type: 'CONTACT_CHOSEN'; payload: string }
+    | { type: 'CONTACT_CHOSEN'; payload: IContact }
     | { type: 'ADD_NEW_CONTACT'; payload: IContact }
     | { type: 'TOGGLE_MODE'; payload: boolean };
 
-export const reducer = (state: IState, action: Action) => {
+export const activeContactReducer = (state: IContact | null, action: Action): IContact | null => {
     switch (action.type) {
         case 'CONTACT_CHOSEN':
-            return {
-                ...state,
-                activeContact: { ...state.contactList[action.payload] },
-            };
-        case 'ADD_NEW_CONTACT':
-            return {
-                ...state,
-                [action.payload.id]: { ...action.payload },
-            };
-        case 'TOGGLE_MODE':
-            return {
-                ...state,
-                editMode: action.payload,
-            };
+            return { ...action.payload };
 
-        default:
+            default:
             return state;
     }
 };
+
+export const contactsReducer = (state: IContactList, action: Action): IContactList => {
+    switch (action.type) {
+        case 'ADD_NEW_CONTACT':
+            return {
+                ...state,
+                [action.payload.id]: action.payload,
+            };
+
+            default:
+            return state;
+    }
+};
+
+export const appStateReducer = (state: boolean, action: Action): boolean => {
+    switch (action.type) {
+        case 'TOGGLE_MODE':
+            return action.payload;
+
+            default:
+            return state;
+    }
+};
+
+export const mainReducer = ({ activeContact, contactList, editMode }: IState, action: Action) => ({
+    contactList: contactsReducer(contactList, action),
+    activeContact: activeContactReducer(activeContact, action),
+    editMode: appStateReducer(editMode, action),
+});
