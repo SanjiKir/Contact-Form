@@ -20,24 +20,9 @@ export const InfoScreen = ({ activeContact, ...other }: InfoScreenProps) => {
     }, []);
 
     return (<>
-                {activeContact && !editMode && (
-                    <>
-                    <MainContactInfo>{`${activeContact.name} ${activeContact.lastName}`}</MainContactInfo>
-                    <ContactDescriptionContainer>
-                        <ViewField labelText="phone" valueText={activeContact.phone} />
-                        <ViewField labelText="email" valueText={activeContact.email} />
-                        <ViewField labelText="address" valueText={activeContact.address} />
-                        <ViewField labelText="note" valueText={activeContact.note} />
-                    </ContactDescriptionContainer>
-                    </>
-                )}
-                {editMode && <ContactForm /> }
-                <ActionElementsContainer>
-                    <Button onClick={toggleAppMode} small={true}>+</Button>
-                {activeContact && (
-                    <Button>Edit</Button>
-                )}
-                </ActionElementsContainer>
+                {activeContact && <ContactForm activeContact={activeContact} /> }
+
+
         </>);
 };
 

@@ -29,3 +29,10 @@ export const StyledForm = styled(Form)`
 export const ContactFormFieldWrapper = styled.div`
     padding: ${props => props.theme.indents.small} ${props => props.theme.indents.large};
 `;
+
+export const ActionElementsContainer = styled.div`
+    display: flex; 
+    width: 100%; 
+    justify-content: space-between;
+    margin-bottom: 2rem;
+`;

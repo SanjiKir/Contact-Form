@@ -2,7 +2,7 @@ import React, { ChangeEvent } from 'react';
 
 import { useChangeEventHook } from '../../hooks';
 
-import { NativeTextArea, TextAreaContainer, ValueContainer } from './style';
+import { NativeTextArea, ValueContainer } from './style';
 
 export interface TextAreaProps {
     onChange?: (e: ChangeEvent<HTMLTextAreaElement>, value?: string) => void;
@@ -10,9 +10,10 @@ export interface TextAreaProps {
     rows?: number;
     children?: React.ReactNode;
     value?: string;
+    disabled?: boolean;
 }
 
-export const TextArea = ({ value, children, rows = 3, onChange, ...other }: TextAreaProps) => {
+export const TextArea = ({ value, children, rows = 3, onChange, disabled, ...other }: TextAreaProps) => {
     const { handleChange } = useChangeEventHook<HTMLTextAreaElement>(onChange);
 
     const textareaProps = {
@@ -23,12 +24,11 @@ export const TextArea = ({ value, children, rows = 3, onChange, ...other }: Text
     };
 
     return (
-        <TextAreaContainer>
             <ValueContainer>
-                <NativeTextArea {...textareaProps} />
-                {children}
+                {disabled
+                    ? <NativeTextArea disabled={disabled} as="span" {...other}>{value}</NativeTextArea>
+                    : <NativeTextArea {...textareaProps} />}
             </ValueContainer>
-        </TextAreaContainer>
     );
 };
 

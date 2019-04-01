@@ -9,24 +9,27 @@ export type FieldProps<T> = {
     label?: ReactNode;
     type?: string;
     name?: string;
+    disabled?: boolean;
 } & FieldElementProps & T;
 
-export const Field = <T extends any>(Component: React.ComponentType<T>) => ({ error, label, large, ...other }: FieldProps<T>) => {
+export const Field = <T extends any>(Component: React.ComponentType<T>) => ({ disabled, error, label, large, ...other }: FieldProps<T>) => {
     const {focused, handleFocus } = useFocusHook();
     const fieldProps = {
         error,
         focused,
+        disabled,
+        large,
     };
 
-    const labelElement = label && <Label focused={focused} large={large}>{label}</Label>;
+    const labelElement = ((disabled && !large) || (!disabled && label)) && <Label focused={focused} large={large}>{label}</Label>;
 
     return (
         <FieldWrapper large={large}>
             {!large && labelElement}
-            <FieldElement large={large} onBlur={handleFocus} onFocus={handleFocus} {...fieldProps}>
+            <FieldElement onBlur={handleFocus} onFocus={handleFocus} {...fieldProps}>
                 {/*
                 // @ts-ignore */ }
-                <Component large={large} {...other} />
+                <Component large={large} disabled={disabled} {...other} />
             </FieldElement>
             {large && labelElement}
         </FieldWrapper>

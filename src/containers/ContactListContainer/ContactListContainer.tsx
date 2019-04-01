@@ -7,7 +7,7 @@ import { toArrayWithoutKeys } from '../../utils';
 
 let prevHeader: string | null = null;
 export const ContactListContainer = (props: any) => {
-    const { state: { contactList }, dispatch } = useStateValue();
+    const { state: { contactList, activeContact }, dispatch } = useStateValue();
 
     const mapContactList = useMemo(() => compose(
         contactListArray => contactListArray.map((contact: IContact, index: number) => {
@@ -33,10 +33,13 @@ export const ContactListContainer = (props: any) => {
         toArrayWithoutKeys
     ), [contactList]);
 
-    const handleContactClick = useCallback((contactId: string) => () => {
-        dispatch({type: 'CONTACT_CHOSEN', payload: contactId});
-        dispatch({ type: 'TOGGLE_MODE', payload: false });
-    }, []);
+    const handleContactClick = (contactId: string) => () => {
+        if (!activeContact || (activeContact && activeContact.id !== contactId)) {
+            // TODO: condition is not working, activeContact always null
+            dispatch({type: 'CONTACT_CHOSEN', payload: contactId});
+            dispatch({ type: 'TOGGLE_MODE', payload: false });
+        }
+    };
 
     return (
         <ContactList>

@@ -4,9 +4,9 @@ import { InputField, InputProps, FieldProps } from '../../lib';
 
 import { ContactFormFieldWrapper } from './style';
 
-export const ContactFormFieldInput = (props : FieldProps<InputProps>) => (
+export const ContactFormFieldInput = ({ disabled, ...other }: FieldProps<InputProps>) => (
     <ContactFormFieldWrapper>
-        <InputField {...props} />
+        <InputField disabled={disabled} {...other} />
     </ContactFormFieldWrapper>
 );
 

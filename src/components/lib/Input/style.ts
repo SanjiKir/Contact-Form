@@ -1,12 +1,6 @@
 import styled from '../../../styled-components';
 import { getInputNormalTypography, getBodyTypography, getHeadingTypography, getInputLargeTypography } from '../../../theme/helpers';
 
-export const InputContainer = styled.div`
-    display: flex;
-    align-items: center;
-    width: 100%;
-`;
-
 export const ValueContainer = styled.div`
     position: relative;
     width: 100%;
@@ -18,10 +12,8 @@ export const ValueContainer = styled.div`
 
 export interface InputProps {
     large?: boolean;
+    disabled?: boolean;
 }
-// font-size: ${getNormalFontSize};
-// font-weight: ${getRegularFontWeight};
-// color: ${getDefaultTextColor};
 
 export const Input = styled.input<InputProps>`
     background-color: transparent;
