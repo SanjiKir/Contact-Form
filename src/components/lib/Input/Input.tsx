@@ -9,22 +9,20 @@ export type InputValue = string | number;
 export interface InputProps {
     children?: React.ReactNode;
     error?: React.ReactNode;
-    onChange?: (e: React.ChangeEvent<HTMLInputElement>, value?: InputValue) => void;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     value?: InputValue;
     type?: string;
     disabled?: boolean;
 }
 
-export const Input = ({ value, onChange, disabled, ...other}: InputProps) => {
-    const { handleChange } = useChangeEventHook<HTMLInputElement>(onChange);
-
-    const inputProps = { ...other, value, onChange: handleChange };
+export const Input = ({ value, disabled, ...other}: InputProps) => {
+    const inputProps = { ...other, value };
 
         return (
                 <ValueContainer>
                     {disabled 
-                    ? <NativeInput as="span" {...other}>{value}</NativeInput> 
-                    : <NativeInput disabled={disabled} {...inputProps} />
+                        ? <NativeInput as="span" {...other}>{value}</NativeInput> 
+                        : <NativeInput disabled={disabled} {...inputProps} />
                     }
                 </ValueContainer>
         );

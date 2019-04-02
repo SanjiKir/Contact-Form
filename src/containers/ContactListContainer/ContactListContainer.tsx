@@ -1,16 +1,19 @@
 import React, { useCallback, useMemo } from 'react';
 import { head, compose, sortBy, prop } from 'ramda';
 
-import { useStateValue, IContact } from '../../store';
+import { IContact, useContactAction, useEditModeAction } from '../../store';
 import { ContactList, ListItem, ContactListDivider, ListHeader } from '../../components';
 import { toArrayWithoutKeys } from '../../utils';
 
 let prevHeader: string | null = null;
 export const ContactListContainer = (props: any) => {
-    const { state: { contactList, activeContact }, dispatch } = useStateValue();
+    const { contactList, activeContact, choseContact } = useContactAction();
+    const { setViewMode } = useEditModeAction();
 
     const mapContactList = useMemo(() => compose(
         contactListArray => contactListArray.map((contact: IContact, index: number) => {
+            const { lastName, name, id } = contact;
+            const isContactSelected = activeContact.id === id;
             const firstLastNameSymbol = head(contact.lastName);
             let header; 
             let divider;
@@ -25,19 +28,19 @@ export const ContactListContainer = (props: any) => {
                 <>
                     {header}
                     {divider}
-                    <ListItem key={contact.id} onClick={handleContactClick(contact.id)}>{`${contact.name} ${contact.lastName}`}</ListItem>
+                    <ListItem key={id} selected={isContactSelected} onClick={handleContactClick(id)}>{`${name} ${lastName}`}</ListItem>
                 </>
             );
         }),
         (contactListArray: ReadonlyArray<IContact>) => sortBy(prop('lastName'))(contactListArray),
         toArrayWithoutKeys
-    ), [contactList]);
+    ), [contactList, activeContact]);
 
     const handleContactClick = (contactId: string) => () => {
         if (!activeContact || (activeContact && activeContact.id !== contactId)) {
             // TODO: condition is not working, activeContact always null
-            dispatch({type: 'CONTACT_CHOSEN', payload: contactId});
-            dispatch({ type: 'TOGGLE_MODE', payload: false });
+            choseContact(contactId);
+            setViewMode();
         }
     };
 

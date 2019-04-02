@@ -1,8 +1,11 @@
+import { FormEvent } from 'react';
+
 import styled from '../../../styled-components';
 import { getButtonTypography } from '../../../theme/helpers';
 
 export interface ButtonProps {
     small?: boolean;
+    onSubmit?: (e?: FormEvent<HTMLFormElement> | undefined) => void;
 }
 export const ButtonElement = styled.button<ButtonProps>`
     ${getButtonTypography}

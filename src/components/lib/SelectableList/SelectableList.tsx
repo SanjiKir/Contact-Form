@@ -32,7 +32,7 @@ export const SelectableList = ({ children, ...other }: SelectableListProps) => {
         }
     
         return React.cloneElement(child, {
-            selected: selected === index,
+            selected: typeof child.props.selected === 'undefined' ? selected === index : child.props.selected,
             onClick: handleSelected(child.props.onClick, index),
         });
     });

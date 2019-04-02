@@ -2,11 +2,12 @@ import React, { useReducer, createContext, ReactNode, Reducer, useContext, Dispa
 
 import { initialContactList } from './initialContactList';
 import { Action, IState } from './reducers';
+import { EMPTY_CONTACT } from './constants';
 
-const initialState = {
+const initialState: IState = {
     contactList: initialContactList,
-    activeContact: null,
-    editMode: true,
+    activeContact: EMPTY_CONTACT,
+    appMode: 'VIEW_MODE',
 };
 
 export type IStateContext = [IState, Dispatch<Action>];
