@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, Fragment, memo } from 'react';
 import { head, compose, sortBy, prop } from 'ramda';
 
 import { IContact, useContactAction, useEditModeAction } from '../../store';
@@ -6,7 +6,7 @@ import { ContactList, ListItem, ContactListDivider, ListHeader } from '../../com
 import { toArrayWithoutKeys } from '../../utils';
 
 let prevHeader: string | null = null;
-export const ContactListContainer = (props: any) => {
+export const ContactListContainer = memo((props: {}) => {
     const { contactList, activeContact, choseContact } = useContactAction();
     const { setViewMode } = useEditModeAction();
 
@@ -25,30 +25,29 @@ export const ContactListContainer = (props: any) => {
             }
     
             return (
-                <>
+                <Fragment key={`fr_${id}`}>
                     {header}
                     {divider}
                     <ListItem key={id} selected={isContactSelected} onClick={handleContactClick(id)}>{`${name} ${lastName}`}</ListItem>
-                </>
+                </Fragment>
             );
         }),
         (contactListArray: ReadonlyArray<IContact>) => sortBy(prop('lastName'))(contactListArray),
         toArrayWithoutKeys
     ), [contactList, activeContact]);
 
-    const handleContactClick = (contactId: string) => () => {
+    const handleContactClick = useCallback((contactId: string) => () => {
         if (!activeContact || (activeContact && activeContact.id !== contactId)) {
-            // TODO: condition is not working, activeContact always null
             choseContact(contactId);
             setViewMode();
         }
-    };
+    }, [activeContact]);
 
     return (
-        <ContactList>
+        <ContactList {...props}>
                 {mapContactList(contactList)}
         </ContactList>
     );
-};
+});
 
 export default ContactListContainer;
