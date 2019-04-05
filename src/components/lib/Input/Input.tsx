@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { useChangeEventHook } from '../../hooks';
-
 import { Input as NativeInput, ValueContainer} from './style';
 
 export type InputValue = string | number;

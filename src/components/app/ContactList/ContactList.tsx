@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { ReactChild } from 'react';
 
 import { SelectableList } from '../../lib';
 
 import { ContactListElement } from './style';
 
-export const ContactList = (props: any) => {
+export interface ContactListProps {
+    children: ReactChild[];
+}
+export const ContactList = (props: ContactListProps) => {
 
     return (
         <ContactListElement>

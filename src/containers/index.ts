@@ -1,2 +1,3 @@
-export * from './ContactListContainer';
-export * from './MainScreenContainer';
+export * from './ContactList';
+export * from './ContactForm';
+export * from './AppContainer';

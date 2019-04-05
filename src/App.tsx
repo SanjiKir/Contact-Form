@@ -5,8 +5,7 @@ import { theme } from './theme';
 import GlobalStyle from './styled-components/GlobalStyle';
 import { StateProvider } from './store/store';
 import { reducer } from './store';
-import ContactListContainer from './containers/ContactListContainer/ContactListContainer';
-import { MainScreenContainer } from './containers';
+import { AppContainer} from './containers';
 
 class App extends Component {
   render() {
@@ -16,10 +15,7 @@ class App extends Component {
         <StateProvider reducer={reducer}>
         <>
           <GlobalStyle />
-          <div style={{display: 'flex'}}>
-            <ContactListContainer />
-            <MainScreenContainer />
-          </div>
+          <AppContainer />
         </>
         </StateProvider>
         </ThemeProvider>

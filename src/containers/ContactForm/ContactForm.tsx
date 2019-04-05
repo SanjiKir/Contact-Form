@@ -1,19 +1,15 @@
 import React, { useCallback } from 'react';
 import { Formik, ErrorMessage } from 'formik';
 
-import { Button, InputField } from '../../lib';
-import { IContact, useStateValue, useEditModeAction, useContactAction } from '../../../store';
+import { Button, InputField } from '../../components/lib';
+import { IContact, useStateValue, useEditModeAction, useContactAction } from '../../store';
 
-import { ContactDescriptionContainer, TextAreasWrapper, StyledForm, ActionElementsContainer } from './style';
+import { ContactDescriptionContainer, TextAreasWrapper, StyledForm, ActionElementsContainer, ContactFormWrapper } from './style';
 import { createContactFormFieldInput } from './helpers';
 
-export interface ContactFormProps {
-  activeContact: IContact;
-}
-
-const ContactForm = ({ activeContact }: ContactFormProps) => {
+const ContactForm = (props: {}) => {
   const { isCreateMode, isViewMode, isEditMode, setEditMode, setCreateMode, setViewMode } = useEditModeAction();
-  const { createNewContact, editContact, choseContact } = useContactAction();
+  const { createNewContact, activeContact, editContact, choseContact } = useContactAction();
 
   const handleNewContactClick = useCallback(() => {
     choseContact(null);
@@ -26,7 +22,6 @@ const ContactForm = ({ activeContact }: ContactFormProps) => {
 
   const handleFormSubmit = useCallback((values: IContact, { setSubmitting }) => {
     setViewMode();
-    debugger;
     if (isCreateMode) {
       createNewContact(values);
     }
@@ -37,17 +32,17 @@ const ContactForm = ({ activeContact }: ContactFormProps) => {
   }, [isCreateMode, isEditMode]);
 
   const inputProps = {
-    disabled: isViewMode
+    disabled: isViewMode,
   };
 
   const largeInputProps = {
     ...inputProps,
     large: true,
-    type: 'text'
+    type: 'text',
   };
 
   return (
-    <div style={{ width: '100%', height: '100%' }}>
+    <ContactFormWrapper>
       <Formik
         initialValues={{ ...activeContact }}
         enableReinitialize={true}
@@ -114,7 +109,7 @@ const ContactForm = ({ activeContact }: ContactFormProps) => {
           </StyledForm>
         )}
       </Formik>
-    </div>
+    </ContactFormWrapper>
   );
 };
 

@@ -6,12 +6,13 @@ import { SelectableListElement } from './style';
 
 export interface SelectableListProps {
     children: ReactChild[];
+    listPadding: string;
 }
 
 const useListItemClick = () => {
     const [selected, setSelected] = useState(-1);
 
-    const handleSelected = useCallback((onClick: any, index: number) => () => {
+    const handleSelected = useCallback((onClick: () => void, index: number) => () => {
         if (onClick) {
             onClick();
         }

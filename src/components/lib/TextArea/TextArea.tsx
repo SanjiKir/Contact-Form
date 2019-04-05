@@ -1,24 +1,17 @@
 import React, { ChangeEvent } from 'react';
 
-import { useChangeEventHook } from '../../hooks';
-
 import { NativeTextArea, ValueContainer } from './style';
 
 export interface TextAreaProps {
-    onChange?: (e: ChangeEvent<HTMLTextAreaElement>, value?: string) => void;
-    onHeightChange?: (height: string) => void;
+    onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void;
     rows?: number;
-    children?: React.ReactNode;
     value?: string;
     disabled?: boolean;
 }
 
-export const TextArea = ({ value, children, rows = 3, onChange, disabled, ...other }: TextAreaProps) => {
-    const { handleChange } = useChangeEventHook<HTMLTextAreaElement>(onChange);
-
+export const TextArea = ({ value, rows = 3, disabled, ...other }: TextAreaProps) => {
     const textareaProps = {
         ...other,
-        onChange: handleChange,
         value,
         rows,
     };

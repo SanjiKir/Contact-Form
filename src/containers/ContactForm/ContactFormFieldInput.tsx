@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { InputField, InputProps, FieldProps } from '../../lib';
+import { InputField, InputProps, FieldProps } from '../../components/lib';
 
 import { ContactFormFieldWrapper } from './style';
 

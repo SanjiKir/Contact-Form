@@ -13,7 +13,7 @@ export type FieldProps<T> = {
 } & FieldElementProps & T;
 
 export const Field = <T extends any>(Component: React.ComponentType<T>) => ({ disabled, error, label, large, ...other }: FieldProps<T>) => {
-    const {focused, handleFocus } = useFocusHook();
+    const { focused, handleFocus } = useFocusHook();
     const fieldProps = {
         error,
         focused,

@@ -9,8 +9,8 @@ export interface ListItemElementProps {
 
 export const ListItemElement = styled.span<ListItemElementProps>`
     ${getListItemTypography}
-    display:flex;
-    align-items:center;
+    display: block;
+    overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
     cursor: pointer;

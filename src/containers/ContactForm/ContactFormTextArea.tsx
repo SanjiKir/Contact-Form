@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { TextAreaField, TextAreaProps, FieldProps } from '../../lib';
+import { TextAreaField, TextAreaProps, FieldProps } from '../../components/lib';
 
 import { ContactFormFieldWrapper } from './style';
 

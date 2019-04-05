@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { FieldProps } from '../../lib';
-import { FieldDivider } from '../FieldDivider';
+import { FieldProps } from '../../components/lib';
+import { FieldDivider } from '../../components/app/FieldDivider';
 
 import ContactFormTextArea from './ContactFormTextArea';
 import ContactFormFieldInput from './ContactFormFieldInput';

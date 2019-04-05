@@ -7,7 +7,8 @@ export const ContactListElement = styled.div`
     min-width: 10rem;
     max-width: 20vw;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
+    height: 100%:
 `;
 
 export const ContactListDivider = styled(Divider)`

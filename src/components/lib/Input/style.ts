@@ -20,7 +20,7 @@ export const Input = styled.input<InputProps>`
     border: 0;
     display: block;
     ${props => props.large ? getInputLargeTypography(props) : getInputNormalTypography(props)}
-
+    overflow: hidden;
     outline: none;
     margin: 0;
     padding: 0;
