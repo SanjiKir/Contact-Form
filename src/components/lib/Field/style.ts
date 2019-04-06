@@ -23,7 +23,7 @@ export const FieldElement = styled.div<FieldElementProps>`
         transition-duration: ${props.theme.animation.animationDuration};
         transition-property: border-color;
         transition-timing-function: ${props.theme.animation.animationFunction};
-        border: 1.5px solid ${props.error ? props.theme.palette.errorColor : props.theme.palette.borderColor};
+        border: 1.5px solid ${props.error ? props.theme.palette.dangerColor : props.theme.palette.borderColor};
         ${props.focused && `border-color: ${props.theme.palette.activeColor}`};
     `}
 `;

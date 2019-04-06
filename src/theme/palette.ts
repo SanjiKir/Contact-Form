@@ -9,7 +9,8 @@ export interface Palette {
     backgroundColor: string;
     secondaryBackgroundColor: string;
     borderColor: string;
-    errorColor: string;
+    dangerColor: string;
+    darkDefaultHoverColor: string;
 }
 
 const white = '#ffffff';
@@ -19,13 +20,14 @@ export const palette: Palette = {
     secondaryFontColor: '#737476',
     fontColorContrast: white,
     defaultHoverColor: '#E1E2E480',
+    darkDefaultHoverColor: '#949494',
     defaultActiveColor: '#E1E2E4',
     activeColor: '#0264E1',
-    hoverColor: 'blue',
+    hoverColor: '#b3defe',
     backgroundColor: white,
     borderColor: '#C4C4C4',
     secondaryBackgroundColor: '#E1E2E4',
-    errorColor: 'red',
+    dangerColor: 'red',
 };
 
 export default palette;

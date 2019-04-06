@@ -9,3 +9,4 @@ export * from './ListItem';
 export * from './SelectableList';
 export * from './TextArea';
 export * from './TextAreaField';
+export * from './DeleteIcon';

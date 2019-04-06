@@ -1,15 +1,18 @@
 import React, { useCallback } from 'react';
-import { Formik, ErrorMessage } from 'formik';
+import { Formik, ErrorMessage, Field } from 'formik';
 
 import { Button, InputField } from '../../components/lib';
-import { IContact, useStateValue, useEditModeAction, useContactAction } from '../../store';
+import { IContact, useStateValue, useModeAction, useContactAction } from '../../store';
 
 import { ContactDescriptionContainer, TextAreasWrapper, StyledForm, ActionElementsContainer, ContactFormWrapper } from './style';
 import { createContactFormFieldInput } from './helpers';
 
-const ContactForm = (props: {}) => {
-  const { isCreateMode, isViewMode, isEditMode, setEditMode, setCreateMode, setViewMode } = useEditModeAction();
-  const { createNewContact, activeContact, editContact, choseContact } = useContactAction();
+export interface ContactFormProps { 
+  activeContact: IContact;
+}
+const ContactForm = ({ activeContact, ...other }: ContactFormProps) => {
+  const { isCreateMode, isViewMode, isEditMode, setEditMode, setCreateMode, setViewMode } = useModeAction();
+  const { createNewContact, editContact, choseContact } = useContactAction();
 
   const handleNewContactClick = useCallback(() => {
     choseContact(null);
@@ -41,76 +44,55 @@ const ContactForm = (props: {}) => {
     type: 'text',
   };
 
+  const renderForm = () => (
+    <StyledForm>
+      <TextAreasWrapper>
+        <Field component={InputField} label="First name" name="name" {...largeInputProps} />
+        <Field component={InputField} label="Last name" name="lastName" {...largeInputProps} />
+        <ErrorMessage name="lastName" component="div" />
+      </TextAreasWrapper>
+      <ContactDescriptionContainer>
+        {createContactFormFieldInput({ ...inputProps, label: 'phone', name: 'phone' })}
+        {createContactFormFieldInput({ ...inputProps, label: 'email',type: 'email',name: 'email'})}
+        {createContactFormFieldInput({ ...inputProps,  isTextArea: true, label: 'address', name: 'address'})}
+        {createContactFormFieldInput({ ...inputProps, isTextArea: true, label: 'note', isDivided: false, name: 'note'})}
+      </ContactDescriptionContainer>
+      <ActionElementsContainer>
+        <Button type="button" onClick={handleNewContactClick} small={true}>
+          +
+        </Button>
+        {!isViewMode && <Button type="submit">Done</Button>}
+        {isViewMode && (
+          <Button onClick={handleEditContact} type="button">
+            Edit
+          </Button>
+        )}
+      </ActionElementsContainer>
+    </StyledForm>
+  );
+
   return (
-    <ContactFormWrapper>
+    <ContactFormWrapper {...other}>
       <Formik
         initialValues={{ ...activeContact }}
         enableReinitialize={true}
-        //   validate={values => {
-        //     let errors = { email: undefined };
-        //     if (!values.email) {
-        //       errors.email = 'Required';
-        //     } else if (
-        //       !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-        //     ) {
-        //       errors.email = 'Invalid email address';
-        //     }
-        //     return errors;
-        //   }}
+        validate={validate}
         onSubmit={handleFormSubmit}
-      >
-        {({ isSubmitting, handleChange, values }) => (
-          <StyledForm>
-            <TextAreasWrapper>
-              <InputField onChange={handleChange} value={values.name} label="First name" name="name" {...largeInputProps} />
-              <ErrorMessage name="name" component="div" />
-              <InputField onChange={handleChange} value={values.lastName} label="Last name" name="lastName" {...largeInputProps} />
-              <ErrorMessage name="lastName" component="div" />
-            </TextAreasWrapper>
-            <ContactDescriptionContainer>
-              {createContactFormFieldInput({ ...inputProps, onChange: handleChange, value: values.phone, label: 'phone', name: 'phone' })}
-              {createContactFormFieldInput({
-                ...inputProps,
-                onChange: handleChange,
-                value: values.email,
-                label: 'email',
-                type: 'email',
-                name: 'email',
-              })}
-              {createContactFormFieldInput({
-                ...inputProps,
-                onChange: handleChange,
-                value: values.address,
-                isTextArea: true,
-                label: 'address',
-                name: 'address',
-              })}
-              {createContactFormFieldInput({
-                ...inputProps,
-                onChange: handleChange,
-                value: values.note,
-                isTextArea: true,
-                label: 'note',
-                isDivided: false,
-                name: 'note',
-              })}
-            </ContactDescriptionContainer>
-            <ActionElementsContainer>
-              <Button type="button" onClick={handleNewContactClick} small={true}>
-                +
-              </Button>
-              {!isViewMode && <Button type="submit">Done</Button>}
-              {isViewMode && (
-                <Button onClick={handleEditContact} type="button">
-                  Edit
-                </Button>
-              )}
-            </ActionElementsContainer>
-          </StyledForm>
-        )}
-      </Formik>
+        render={renderForm}
+      />
     </ContactFormWrapper>
   );
 };
+
+export interface Errors {
+  lastName?: string;
+}
+const validate = (values: IContact): Errors => {
+    const errors: Errors = {};
+    if (!values.lastName) {
+      errors.lastName = 'Last name is required';
+    }
+    return errors;
+  };
 
 export default ContactForm;

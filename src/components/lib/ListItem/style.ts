@@ -18,7 +18,22 @@ export const ListItemElement = styled.span<ListItemElementProps>`
 `;
 
 export const ListItemWrapper = styled.div<ListItemElementProps>`
+    display: flex;
+    justify-content: space-between;
     background-color: ${props => props.selected ? props.theme.palette.activeColor : 'transparent'};
+    &:hover {
+       ${props => !props.selected &&  `background-color: ${props.theme.palette.darkDefaultHoverColor};`}
+    }
     height: 1.5rem;
     padding: 0 ${props => props.theme.indents.large};
+`;
+
+export const DetailContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    padding-right: 8px;
 `;

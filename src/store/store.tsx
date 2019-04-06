@@ -6,7 +6,7 @@ import { EMPTY_CONTACT } from './constants';
 
 const initialState: IState = {
     contactList: initialContactList,
-    activeContact: EMPTY_CONTACT,
+    activeContact: null,
     appMode: 'VIEW_MODE',
 };
 

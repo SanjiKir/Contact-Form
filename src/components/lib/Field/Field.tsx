@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react';
+import { FieldProps as FormikFieldProps } from 'formik';
 
 import { useFocusHook } from '../../hooks';
 import { Label } from '../Label';
@@ -10,15 +11,45 @@ export type FieldProps<T> = {
     type?: string;
     name?: string;
     disabled?: boolean;
+    field?: FormikFieldProps;
 } & FieldElementProps & T;
 
-export const Field = <T extends any>(Component: React.ComponentType<T>) => ({ disabled, error, label, large, ...other }: FieldProps<T>) => {
+export const Field = <T extends any>(Component: React.ComponentType<T>) => ({
+    disabled,
+    error,
+    label,
+    large,
+    field,
+    ...other
+  }: FieldProps<T>) => {
+  
     const { focused, handleFocus } = useFocusHook();
     const fieldProps = {
         error,
         focused,
         disabled,
         large,
+    };
+
+    let name; 
+    let value; 
+    let onChange;
+    let onBlur;
+    if (field) {
+        name = field.name;
+        value = field.value;
+        onChange = field.onChange;
+        onBlur = field.onBlur; 
+    }
+
+    const componentProps = {
+        disabled,
+        large,
+        name,
+        value,
+        onChange,
+        onBlur,
+        ...other,
     };
 
     const labelElement = ((disabled && !large) || (!disabled && label)) && <Label focused={focused} large={large}>{label}</Label>;
@@ -29,7 +60,7 @@ export const Field = <T extends any>(Component: React.ComponentType<T>) => ({ di
             <FieldElement onBlur={handleFocus} onFocus={handleFocus} {...fieldProps}>
                 {/*
                 // @ts-ignore */ }
-                <Component large={large} disabled={disabled} {...other} />
+                <Component {...componentProps} />
             </FieldElement>
             {large && labelElement}
         </FieldWrapper>

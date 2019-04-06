@@ -4,7 +4,7 @@ import uuid from 'uuid';
 import { useStateValue } from '../store';
 import { IContact } from '../initialContactList';
 
-export const useEditModeAction = () => {
+export const useModeAction = () => {
   const {
     state: { appMode: mode },
     dispatch,
@@ -46,10 +46,8 @@ export const useContactAction = () => {
   
     const createNewContact = useCallback((contact: INewContact) => {
         const newContactId = uuid();
-        debugger;
 
         dispatch({ type: 'ADD_NEW_CONTACT', payload: { ...contact, id: newContactId }});
-        debugger;
         dispatch({ type: 'CONTACT_CHOSEN', payload: newContactId });
     }, []);
 
@@ -57,6 +55,12 @@ export const useContactAction = () => {
         dispatch({ type: 'EDIT_CONTACT', payload: contact});
         dispatch({ type: 'CONTACT_CHOSEN', payload: contact.id });
     }, []);
+
+    const deleteContact = useCallback((id: string) => {
+      dispatch({ type: 'DELETE_CONTACT', payload: id });
+      dispatch({ type: 'CONTACT_CHOSEN', payload: null });
+      dispatch({ type: 'TOGGLE_MODE', payload: 'VIEW_MODE' });
+  }, []);
 
     const choseContact = useCallback((id: string | null) => {
         dispatch({ type: 'CONTACT_CHOSEN', payload: id });
@@ -67,6 +71,7 @@ export const useContactAction = () => {
         contactList,
         createNewContact,
         editContact,
+        deleteContact,
         choseContact,
     };
 };

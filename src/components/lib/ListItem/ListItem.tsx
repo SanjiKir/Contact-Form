@@ -1,16 +1,20 @@
 import React, { ReactNode }  from 'react';
 
-import { ListItemElement, ListItemWrapper, ListItemElementProps } from './style';
+import { DeleteIcon } from '../DeleteIcon';
+
+import { ListItemElement, ListItemWrapper, ListItemElementProps, DetailContainer } from './style';
 
 export interface ListItemProps extends ListItemElementProps {
     selected?: boolean;
     children: ReactNode;
+    rightDetail?: ReactNode;
 }
-export default ({ children, selected, ...other}: ListItemProps) => {
+export default ({ children, selected, rightDetail, ...other}: ListItemProps) => {
 
-    return <ListItemWrapper selected={selected}>
-                <ListItemElement selected={selected} {...other}>
+    return <ListItemWrapper {...other} selected={selected}>
+                <ListItemElement selected={selected}>
                     {children}
                 </ListItemElement>
+                {rightDetail && <DetailContainer>{rightDetail}</DetailContainer>}
             </ListItemWrapper>;
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Field } from 'formik';
 
 import { FieldProps } from '../../components/lib';
 import { FieldDivider } from '../../components/app/FieldDivider';
@@ -20,7 +21,7 @@ export const createContactFormFieldInput = <T extends {}>({
   ...other
 }: CreateInputFieldProps<T>) => (
   <>
-    {isTextArea ? <ContactFormTextArea type={type} {...other} /> : <ContactFormFieldInput type={type} {...other} />}
+    {isTextArea ? <Field component={ContactFormTextArea} type={type} {...other} /> : <Field component={ContactFormFieldInput} type={type} {...other} />}
     {isDivided && <FieldDivider />}
   </>
 );
