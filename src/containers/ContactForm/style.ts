@@ -3,14 +3,7 @@ import { Form } from 'formik';
 import styled from '../../styled-components';
 
 export const ContactFormWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    background-color: ${props => props.theme.palette.backgroundColor};
-    padding: 0 4rem;
-    width: 100%;
-    overflow: hidden;
+
 `;
 
 export const ContactDescriptionContainer = styled.div`
@@ -24,7 +17,7 @@ export const TextAreasWrapper = styled.div`
     width: 100%; 
     margin-bottom: 2rem;
 
-    *:not(:first-child) {
+    & >*:not(:first-child) {
         margin-left: 2rem;
     }
 `;

@@ -2,22 +2,21 @@ import React, { useCallback } from 'react';
 import { Formik, ErrorMessage, Field } from 'formik';
 
 import { Button, InputField } from '../../components/lib';
-import { IContact, useStateValue, useModeAction, useContactAction } from '../../store';
+import { NewContactButton } from '../NewContactButton';
+import { IContact, useModeAction, useContactAction } from '../../store';
 
-import { ContactDescriptionContainer, TextAreasWrapper, StyledForm, ActionElementsContainer, ContactFormWrapper } from './style';
+import { ContactDescriptionContainer, TextAreasWrapper, StyledForm, ActionElementsContainer } from './style';
 import { createContactFormFieldInput } from './helpers';
 
 export interface ContactFormProps { 
   activeContact: IContact;
 }
+export interface RenderFormProps {
+  errors: Errors;
+}
 const ContactForm = ({ activeContact, ...other }: ContactFormProps) => {
-  const { isCreateMode, isViewMode, isEditMode, setEditMode, setCreateMode, setViewMode } = useModeAction();
-  const { createNewContact, editContact, choseContact } = useContactAction();
-
-  const handleNewContactClick = useCallback(() => {
-    choseContact(null);
-    setCreateMode();
-  }, []);
+  const { isCreateMode, isViewMode, isEditMode, setEditMode, setViewMode } = useModeAction();
+  const { createNewContact, editContact } = useContactAction();
 
   const handleEditContact = useCallback(() => {
     setEditMode();
@@ -44,23 +43,20 @@ const ContactForm = ({ activeContact, ...other }: ContactFormProps) => {
     type: 'text',
   };
 
-  const renderForm = () => (
+  const renderForm = ({ errors }: RenderFormProps) => (
     <StyledForm>
       <TextAreasWrapper>
         <Field component={InputField} label="First name" name="name" {...largeInputProps} />
-        <Field component={InputField} label="Last name" name="lastName" {...largeInputProps} />
-        <ErrorMessage name="lastName" component="div" />
+        <Field component={InputField} error={errors.lastName} label="Last name" name="lastName" {...largeInputProps} />
       </TextAreasWrapper>
       <ContactDescriptionContainer>
         {createContactFormFieldInput({ ...inputProps, label: 'phone', name: 'phone' })}
-        {createContactFormFieldInput({ ...inputProps, label: 'email',type: 'email',name: 'email'})}
-        {createContactFormFieldInput({ ...inputProps,  isTextArea: true, label: 'address', name: 'address'})}
-        {createContactFormFieldInput({ ...inputProps, isTextArea: true, label: 'note', isDivided: false, name: 'note'})}
+        {createContactFormFieldInput({ ...inputProps, label: 'email', type: 'email', name: 'email'})}
+        {createContactFormFieldInput({ ...inputProps, isTextArea: true, label: 'address', name: 'address'})}
+        {createContactFormFieldInput({ ...inputProps, rows: 4, isTextArea: true, label: 'note', isDivided: false, name: 'note'})}
       </ContactDescriptionContainer>
       <ActionElementsContainer>
-        <Button type="button" onClick={handleNewContactClick} small={true}>
-          +
-        </Button>
+        <NewContactButton />
         {!isViewMode && <Button type="submit">Done</Button>}
         {isViewMode && (
           <Button onClick={handleEditContact} type="button">
@@ -72,7 +68,6 @@ const ContactForm = ({ activeContact, ...other }: ContactFormProps) => {
   );
 
   return (
-    <ContactFormWrapper {...other}>
       <Formik
         initialValues={{ ...activeContact }}
         enableReinitialize={true}
@@ -80,7 +75,6 @@ const ContactForm = ({ activeContact, ...other }: ContactFormProps) => {
         onSubmit={handleFormSubmit}
         render={renderForm}
       />
-    </ContactFormWrapper>
   );
 };
 

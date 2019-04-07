@@ -4,7 +4,7 @@ import { FieldProps as FormikFieldProps } from 'formik';
 import { useFocusHook } from '../../hooks';
 import { Label } from '../Label';
 
-import { FieldElement, FieldWrapper, FieldElementProps } from './style';
+import { FieldElement, FieldWrapper, FieldElementProps, ErrorMessage } from './style';
 
 export type FieldProps<T> = {
     label?: ReactNode;
@@ -63,6 +63,7 @@ export const Field = <T extends any>(Component: React.ComponentType<T>) => ({
                 <Component {...componentProps} />
             </FieldElement>
             {large && labelElement}
+            {error && <ErrorMessage>{error}</ErrorMessage>}
         </FieldWrapper>
     );
 };

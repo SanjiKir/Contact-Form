@@ -2,16 +2,20 @@ import React from 'react';
 
 import { ContactList } from '../ContactList';
 import { ContactForm } from '../ContactForm';
+import { NewContactButton } from '../NewContactButton';
 import { useContactAction } from '../../store';
 
-import { AppContainerWrapper } from './style';
+import { AppContainerWrapper, ContactFormWrapper } from './style';
 
 export default (props: {})  => {
     const { activeContact } = useContactAction();
+
     return  (
         <AppContainerWrapper>
             <ContactList />
-            {activeContact && <ContactForm activeContact={activeContact} />}
+            <ContactFormWrapper>
+                {activeContact ? <ContactForm activeContact={activeContact} /> : <NewContactButton />}
+            </ContactFormWrapper>
         </AppContainerWrapper>
     );
 };

@@ -32,8 +32,4 @@ export const DetailContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
-    padding-right: 8px;
 `;

@@ -11,6 +11,7 @@ export interface Palette {
     borderColor: string;
     dangerColor: string;
     darkDefaultHoverColor: string;
+    scroolbarColor: string;
 }
 
 const white = '#ffffff';
@@ -27,6 +28,7 @@ export const palette: Palette = {
     backgroundColor: white,
     borderColor: '#C4C4C4',
     secondaryBackgroundColor: '#E1E2E4',
+    scroolbarColor: '#b4b4b6',
     dangerColor: 'red',
 };
 

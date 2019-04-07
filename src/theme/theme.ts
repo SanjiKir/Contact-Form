@@ -17,6 +17,7 @@ export interface Indents {
     small: string;
     medium: string;
     large: string;
+    pageTop: string;
 }
 
 export const theme = {
@@ -30,6 +31,7 @@ export const theme = {
         small: '0.5rem',
         medium: '1rem',
         large: '2.2rem',
+        pageTop: '5rem',
     },
 };
 

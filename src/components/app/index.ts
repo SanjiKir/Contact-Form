@@ -1,2 +1,2 @@
 export * from './ContactList';
-export * from './MainContactInfo';
+export * from './FieldDivider';

@@ -4,6 +4,25 @@ export const GlobalStyle = createGlobalStyle`
   html {
     box-sizing: border-box;
     font-size: 14px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 1.2em;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  ::-webkit-scrollbar-thumb {
+    background: ${props => props.theme.palette.scroolbarColor};
+    border-radius: 30px;
+    border: .2em solid #f1f1f1;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: ${props => props.theme.palette.darkDefaultHoverColor}; 
+  }
 
   body {
     margin: 0;
@@ -16,6 +35,8 @@ export const GlobalStyle = createGlobalStyle`
     background: ${props => props.theme.palette.backgroundColor};
     min-height: 100vh;
   }
+
+
 `;
 
 export default GlobalStyle;

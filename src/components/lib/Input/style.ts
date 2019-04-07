@@ -7,7 +7,7 @@ export const ValueContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 0.2rem;
+    padding: 0.2rem;
 `;
 
 export interface InputProps {

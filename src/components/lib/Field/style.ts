@@ -1,7 +1,8 @@
 import styled from '../../../styled-components';
+import { getInputLabelTypography } from '../../../theme/helpers';
 
 export interface FieldElementProps {
-    error?: boolean;
+    error?: string;
     focused?: boolean;
     large?: boolean;
     disabled?: boolean;
@@ -26,4 +27,9 @@ export const FieldElement = styled.div<FieldElementProps>`
         border: 1.5px solid ${props.error ? props.theme.palette.dangerColor : props.theme.palette.borderColor};
         ${props.focused && `border-color: ${props.theme.palette.activeColor}`};
     `}
+`;
+
+export const ErrorMessage = styled.span`
+    ${getInputLabelTypography};
+    color: ${props => props.theme.palette.dangerColor};
 `;

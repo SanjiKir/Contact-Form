@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, Fragment, memo } from 'react';
-import { head, compose, sortBy, prop } from 'ramda';
+import { head, compose, sortBy, prop, toUpper } from 'ramda';
 
 import { IContact, useContactAction, useModeAction } from '../../store';
 import { ContactList, ListItem, ContactListDivider, ListHeader, DeleteIcon } from '../../components';
@@ -14,7 +14,7 @@ export const ContactListContainer = memo((props: {}) => {
         contactListArray => contactListArray.map((contact: IContact, index: number) => {
             const { lastName, name, id } = contact;
             const isContactSelected = !!activeContact && activeContact.id === id;
-            const firstLastNameSymbol = head(contact.lastName);
+            const firstLastNameSymbol = toUpper(head(contact.lastName));
             let header; 
             let divider;
             const rightDetail = isEditMode && isContactSelected && <DeleteIcon callbackArg={id} onClick={deleteContact} />;
@@ -38,7 +38,12 @@ export const ContactListContainer = memo((props: {}) => {
                 </Fragment>
             );
         }),
-        (contactListArray: ReadonlyArray<IContact>) => sortBy(prop('lastName'))(contactListArray),
+        (contactListArray: ReadonlyArray<IContact>) => sortBy(
+            compose(
+                toUpper,
+                prop('lastName')
+            )
+        )(contactListArray),
         toArrayWithoutKeys
     ), [contactList, activeContact, isEditMode]);
 
