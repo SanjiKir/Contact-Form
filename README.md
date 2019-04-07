@@ -1,4 +1,4 @@
-This project was written with hooks only.  
+This project was written using functional components only.  
 No redux was used.  
 To start type: `yarn; yarn start`.
 
