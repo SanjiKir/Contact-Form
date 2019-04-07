@@ -1,4 +1,4 @@
-This project was written using functional components oly.  
+This project was written using functional components only.  
 As a store management I decided to use latest React features instead of `redux/mobx/graphql-linked-state` etc.  
 To start type: `yarn; yarn start`.
 
