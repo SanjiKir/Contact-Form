@@ -50,6 +50,15 @@ const initialContactArray = [
         address: '11 Bayland str Florida FL 55012 United States',
         note: 'Note',
     },
+    {
+        id: uuid(),
+        name: 'Kirill',
+        lastName: 'Shamanin',
+        phone: '777-559-805',
+        email: 'sanjikir@gmail.com',
+        address: 'N/A',
+        note: 'Nice guy, definitely should hire him',
+    },
     // Uncomment to check scrollbar
     // {
     //     id: uuid(),

@@ -5,15 +5,14 @@ import { useContactAction, useModeAction } from '../../store';
 
 export default () => {
     const { choseContact } = useContactAction();
-    const { setCreateMode } = useModeAction();
-    
+    const { setCreateMode, isCreateMode } = useModeAction();
     const handleNewContactClick = useCallback(() => {
-        choseContact(null);
+        choseContact('');
         setCreateMode();
       }, []);
 
     return (
-        <Button type="button" onClick={handleNewContactClick} small={true}>
+        <Button disabled={isCreateMode} type="button" onClick={handleNewContactClick} small={true}>
             +
         </Button>
     );

@@ -15,4 +15,3 @@ export const ContactListElement = styled.div`
 export const ContactListDivider = styled(Divider)`
     margin-left: ${props => props.theme.indents.medium}
 `;
-

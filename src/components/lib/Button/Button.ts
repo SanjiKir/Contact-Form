@@ -34,6 +34,10 @@ export const ButtonElement = styled.button<ButtonProps>`
     &:active {
         background-color: ${props => props.theme.palette.defaultActiveColor};
     }
+
+    &:disabled {
+        cursor: not-allowed;
+    }
 `;
 
 export default ButtonElement;

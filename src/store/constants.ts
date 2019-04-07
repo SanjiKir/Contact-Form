@@ -1,7 +1,7 @@
 import { IContact } from './initialContactList';
 
 export const EMPTY_CONTACT: IContact = {
-    id: '',
+    id: 'none',
     name: '',
     lastName: '',
     phone: '',

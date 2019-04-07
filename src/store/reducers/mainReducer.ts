@@ -1,4 +1,4 @@
-import { omit } from 'ramda';
+import { omit, propOr, isNil } from 'ramda';
 
 import { IContact, IContactList } from '../initialContactList';
 import { EMPTY_CONTACT } from '../constants';
@@ -23,7 +23,14 @@ export const reducer = (state: IState, action: Action) => {
         case 'CONTACT_CHOSEN':
             return {
                 ...state,
-                activeContact: action.payload ? { ...state.contactList[action.payload] } : EMPTY_CONTACT,
+                activeContact: !isNil(action.payload)
+                    ? {
+                          ...propOr<IContact>(EMPTY_CONTACT, action.payload)<
+                              IContactList,
+                              IContact
+                          >(state.contactList),
+                      }
+                    : null,
             };
         case 'ADD_NEW_CONTACT':
             return {
@@ -31,7 +38,7 @@ export const reducer = (state: IState, action: Action) => {
                 contactList: {
                     ...state.contactList,
                     [action.payload.id]: { ...action.payload },
-                },
+                }
             };
         case 'EDIT_CONTACT':
             return {
@@ -39,7 +46,7 @@ export const reducer = (state: IState, action: Action) => {
                 contactList: {
                     ...state.contactList,
                     [action.payload.id]: { ...action.payload },
-                },
+                }
             };
         case 'DELETE_CONTACT':
             return {

@@ -4,6 +4,10 @@ export const GlobalStyle = createGlobalStyle`
   html {
     box-sizing: border-box;
     font-size: 14px;
+      
+    @media only screen  and (min-width: 1824px) {
+      font-size: 16px;
+    }
   }
 
   ::-webkit-scrollbar {

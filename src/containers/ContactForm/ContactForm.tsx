@@ -11,16 +11,17 @@ import { createContactFormFieldInput } from './helpers';
 export interface ContactFormProps { 
   activeContact: IContact;
 }
+
+export interface Touched {
+  lastName?: boolean;
+}
 export interface RenderFormProps {
   errors: Errors;
+  touched: Touched;
 }
 const ContactForm = ({ activeContact, ...other }: ContactFormProps) => {
   const { isCreateMode, isViewMode, isEditMode, setEditMode, setViewMode } = useModeAction();
   const { createNewContact, editContact } = useContactAction();
-
-  const handleEditContact = useCallback(() => {
-    setEditMode();
-  }, []);
 
   const handleFormSubmit = useCallback((values: IContact, { setSubmitting }) => {
     setViewMode();
@@ -43,11 +44,11 @@ const ContactForm = ({ activeContact, ...other }: ContactFormProps) => {
     type: 'text',
   };
 
-  const renderForm = ({ errors }: RenderFormProps) => (
+  const renderForm = ({ touched, errors }: RenderFormProps) => (
     <StyledForm>
       <TextAreasWrapper>
         <Field component={InputField} label="First name" name="name" {...largeInputProps} />
-        <Field component={InputField} error={errors.lastName} label="Last name" name="lastName" {...largeInputProps} />
+        <Field component={InputField} error={touched.lastName && errors.lastName} label="Last name" name="lastName" {...largeInputProps} />
       </TextAreasWrapper>
       <ContactDescriptionContainer>
         {createContactFormFieldInput({ ...inputProps, label: 'phone', name: 'phone' })}
@@ -59,7 +60,7 @@ const ContactForm = ({ activeContact, ...other }: ContactFormProps) => {
         <NewContactButton />
         {!isViewMode && <Button type="submit">Done</Button>}
         {isViewMode && (
-          <Button onClick={handleEditContact} type="button">
+          <Button onClick={setEditMode} type="button">
             Edit
           </Button>
         )}
