@@ -7,9 +7,11 @@ import { toArrayWithoutKeys } from '../../utils';
 
 let prevHeader: string = '';
 export const ContactListContainer = memo((props: {}) => {
+    // Should useContactAction and useModeAction have the suffix `Action`, when they are also returning selectors?
     const { contactList, activeContact, choseContact, deleteContact } = useContactAction();
     const { setViewMode, isEditMode } = useModeAction();
 
+    // This seems a bit hard to read
     const mapContactList = useMemo(() => compose(
         contactListArray => contactListArray.map((contact: IContact, index: number) => {
             const { lastName, name, id } = contact;

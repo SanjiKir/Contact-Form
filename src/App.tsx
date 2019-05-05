@@ -1,3 +1,4 @@
+// What I was missing was the link to the deployed version of this app. You could try netlify.com, it takes just a few mins and others could see the app without running it localy ;) 
 import React, { Component } from 'react';
 
 import { ThemeProvider } from './styled-components';

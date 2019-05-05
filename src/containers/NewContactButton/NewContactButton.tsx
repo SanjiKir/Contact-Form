@@ -12,6 +12,7 @@ export default () => {
       }, []);
 
     return (
+        // only `small` without ={true}
         <Button disabled={isCreateMode} type="button" onClick={handleNewContactClick} small={true}>
             +
         </Button>
