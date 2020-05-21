@@ -1,7 +1,8 @@
 name: automerge
 on:
   schedule:
-    - cron: '20 08,15 * * 1-4'
+    - cron: '0 08,16,18,20 * * 1-3'
+    - cron:  '*/5 07-15 * * 4'
 jobs:
   automerge:
     runs-on: ubuntu-latest
@@ -11,5 +12,4 @@ jobs:
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           MERGE_METHOD: "squash"
-          MERGE_REMOVE_LABELS: "ready-to-merge"
           MERGE_LABELS: "ready-to-merge"
