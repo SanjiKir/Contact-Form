@@ -13,4 +13,4 @@ jobs:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           MERGE_METHOD: "squash"
           MERGE_LABELS: "ready-to-merge"
-          MERGE_APROOVED_BY_REVIEWERS: "DmytryTkachenko, JakubTkadlacek, Zhopa"
+          MERGE_APROOVED_BY_REVIEWERS: "DmytryTkachenko, JakubTkadlacek, TkachenkoDmitry"
