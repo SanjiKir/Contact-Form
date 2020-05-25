@@ -8,8 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: automerge
-        uses: "pascalgn/automerge-action@7ab42e888a333bf77ce865bc84fedc6a365a3548"
+        uses: "SanjiKir/automerge-action@167e224c922f22e96e9002013fe20ae5b24f02ed"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           MERGE_METHOD: "squash"
           MERGE_LABELS: "ready-to-merge"
+          MERGE_APROOVED_BY_REVIEWERS:
+            - DmytryTkachenko
+            - JakubTkadlacek
+            - Zhopa
