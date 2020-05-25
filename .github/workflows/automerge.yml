@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: automerge
-        uses: "SanjiKir/automerge-action@167e224c922f22e96e9002013fe20ae5b24f02ed"
+        uses: "SanjiKir/automerge-action@d1b10d45ec9b1874d5234fa0589dab40c32c540a"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           MERGE_METHOD: "squash"
