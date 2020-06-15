@@ -13,4 +13,3 @@ jobs:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           MERGE_METHOD: "squash"
           MERGE_LABELS: "ready-to-merge"
-          MERGE_COMMIT_MESSAGE: "pull-request-title-and-description"
